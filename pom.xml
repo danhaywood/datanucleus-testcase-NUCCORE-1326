@@ -11,6 +11,16 @@
     <name>DataNucleus Test for JDO</name>
     <description>DataNucleus Test for JDO</description>
 
+    <properties>
+        <datanucleus-core.version>4.0.6</datanucleus-core.version>
+        <datanucleus-api-jdo.version>4.0.5</datanucleus-api-jdo.version>
+        <datanucleus-jdo-query.version>4.0.4</datanucleus-jdo-query.version>
+        <datanucleus-rdbms.version>4.0.11</datanucleus-rdbms.version>
+
+        <datanucleus-jodatime.version>4.0.6</datanucleus-jodatime.version>
+        <datanucleus-maven-plugin.version>4.0.0-release</datanucleus-maven-plugin.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>javax.jdo</groupId>
@@ -21,18 +31,18 @@
         <dependency>
             <groupId>org.datanucleus</groupId>
             <artifactId>datanucleus-core</artifactId>
-            <version>[4.0.0-release, )</version>
+            <version>${datanucleus-core.version}</version>
         </dependency>
         <dependency>
             <groupId>org.datanucleus</groupId>
             <artifactId>datanucleus-api-jdo</artifactId>
-            <version>[4.0.0-release, )</version>
+            <version>${datanucleus-api-jdo.version}</version>
         </dependency>
 
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.9</version>
+            <version>4.12</version>
         </dependency>
         <dependency>
             <groupId>log4j</groupId>
@@ -44,7 +54,7 @@
         <dependency>
             <groupId>org.datanucleus</groupId>
             <artifactId>datanucleus-rdbms</artifactId>
-            <version>[4.0.0-release, )</version>
+            <version>${datanucleus-rdbms.version}</version>
         </dependency>
 
         <!-- Change to the datastore driver required for your datastore -->
@@ -92,10 +102,10 @@
             <plugin>
                 <groupId>org.datanucleus</groupId>
                 <artifactId>datanucleus-maven-plugin</artifactId>
-                <version>4.0.0-release</version>
+                <version>${datanucleus-maven-plugin.version}</version>
                 <configuration>
                     <api>JDO</api>
-                    <persistenceUnitName>MyTest</persistenceUnitName>
+                    <persistenceUnitName>NUCCORE-1326</persistenceUnitName>
                     <fork>false</fork>
                     <verbose>false</verbose>
                     <log4jConfiguration>${basedir}/src/main/resources/log4j.properties</log4jConfiguration>

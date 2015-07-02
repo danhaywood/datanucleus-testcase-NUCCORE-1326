@@ -1,20 +1,28 @@
-package org.datanucleus.test;
+package com.danhaywood.datanucleus.testcase.nuccore1326;
 
-import java.util.*;
-import org.junit.*;
-import javax.jdo.*;
+import javax.jdo.JDOHelper;
+import javax.jdo.PersistenceManager;
+import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.Transaction;
 
-import static org.junit.Assert.*;
-import mydomain.model.*;
+import org.apache.log4j.PropertyConfigurator;
 import org.datanucleus.util.NucleusLogger;
+import org.junit.Test;
+
+import static org.junit.Assert.fail;
 
 public class SimpleTest
 {
+
+    static {
+        PropertyConfigurator.configure(SimpleTest.class.getResource("logging.properties"));
+    }
+
     @Test
     public void testSimple()
     {
         NucleusLogger.GENERAL.info(">> test START");
-        PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("MyTest");
+        PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("NUCCORE-1326");
 
         PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx = pm.currentTransaction();
@@ -22,7 +30,10 @@ public class SimpleTest
         {
             tx.begin();
 
-            // [INSERT code here to persist object required for testing]
+            Person person = new Person(123, "Fred");
+
+            pm.makePersistent(person);
+
 
             tx.commit();
         }
