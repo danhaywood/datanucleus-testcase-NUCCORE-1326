@@ -6,20 +6,53 @@
 
     <persistence-unit name="NUCCORE-1326">
         <!-- Add all of your model classes here -->
+<!--
         <class>com.danhaywood.datanucleus.testcase.nuccore1326.Person</class>
         <exclude-unlisted-classes />
+-->
         <properties>
-            <!-- Update these datastore details if different -->
+
             <property name="javax.jdo.PersistenceManagerFactoryClass" value="org.datanucleus.api.jdo.JDOPersistenceManagerFactory"/>
+
+            <property name="datanucleus.schema.autoCreateAll" value="true"/>
+            <property name="datanucleus.schema.validateTables" value="true"/>
+            <property name="datanucleus.schema.validateColumns" value="false"/>
+            <property name="datanucleus.schema.validateConstraints" value="true"/>
+
+            <!-- doesn't seem to do anything ? -->
+            <property name="datanucleus.schema.autoCreateSchema" value="true"/>
+
+            <property name="datanucleus.identifier.case" value="MixedCase"/>
+
+            <!--
+            works, but 'by accident' (call to DatabaseMetaData#getIndexInfo(null, null, "Person",...) still returns the index
+            -->
+            <property name="javax.jdo.option.ConnectionURL" value="jdbc:postgresql://localhost:5432/nuccore1326"/>
+            <property name="javax.jdo.option.ConnectionDriverName" value="org.postgresql.Driver"/>
+            <property name="javax.jdo.option.ConnectionUserName" value="datanucleus"/>
+            <property name="javax.jdo.option.ConnectionPassword" value="datanucleus"/>
+
+            <!--
+            fails, because DatabaseMetaData#getIndexInfo(null, null, "Person",...) does not returns the index
+            if DN had called DatabaseMetaData#getIndexInfo(null, "people", "Person",...), though, then would have worked
+            -->
+<!--
+            <property name="javax.jdo.option.ConnectionURL" value="jdbc:sqlserver://127.0.0.1:1433;instance=.;databaseName=nuccore1326_1"/>
+            <property name="javax.jdo.option.ConnectionDriverName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+            <property name="javax.jdo.option.ConnectionUserName" value="datanucleus"/>
+            <property name="javax.jdo.option.ConnectionPassword" value="datanucleus"/>
+-->
+
+            <!--
+            also works, same as for PostgreSQL
+            -->
+<!--
             <property name="javax.jdo.option.ConnectionURL" value="jdbc:h2:mem:nucleus"/>
             <property name="javax.jdo.option.ConnectionDriverName" value="org.h2.Driver"/>
             <property name="javax.jdo.option.ConnectionUserName" value="sa"/>
             <property name="javax.jdo.option.ConnectionPassword" value=""/>
+-->
 
-            <property name="datanucleus.schema.autoCreateAll" value="true"/>
-            <property name="datanucleus.schema.validateTables" value="true"/>
-            <property name="datanucleus.schema.validateColumns" value="true"/>
-            <property name="datanucleus.schema.validateConstraints" value="true"/>
         </properties>
     </persistence-unit>
 

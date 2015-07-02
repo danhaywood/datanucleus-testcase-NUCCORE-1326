@@ -5,17 +5,16 @@ import javax.jdo.annotations.PrimaryKey;
 
 @javax.jdo.annotations.PersistenceCapable(
         identityType= IdentityType.APPLICATION,
-        schema = "people",
-        table = "Person")
-public class Person {
+        table = "Other")
+public class Other {
 
-    public Person(){}
+    public Other(){}
 
-    public Person(long id)
+    public Other(long id)
     {
         this(id, null);
     }
-    public Person(long id, String name)
+    public Other(long id, String name)
     {
         this.id = id;
         this.name = name;
@@ -38,16 +37,4 @@ public class Person {
         this.name = name;
     }
 
-
-    private Person manager;
-
-    @javax.jdo.annotations.Persistent
-    @javax.jdo.annotations.Column(name="managerId", allowsNull="true")
-    public Person getManager() {
-        return manager;
-    }
-
-    public void setManager(final Person manager) {
-        this.manager = manager;
-    }
 }
