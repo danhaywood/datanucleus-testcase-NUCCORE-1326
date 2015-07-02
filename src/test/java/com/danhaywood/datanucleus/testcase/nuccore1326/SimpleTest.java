@@ -56,7 +56,7 @@ public class SimpleTest
 
         Set<String> classNames = Sets.newLinkedHashSet();
         classNames.addAll(Lists.newArrayList(
-                Other.class.getName(), Person.class.getName()));
+                Person.class.getName(), Other.class.getName()));
 
         if (nucleusContext instanceof StoreNucleusContext) {
 

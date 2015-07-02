@@ -22,6 +22,7 @@
             <!-- doesn't seem to do anything ? -->
             <property name="datanucleus.schema.autoCreateSchema" value="true"/>
 
+            <!-- if this is commented out, then works even on SQL Server -->
             <property name="datanucleus.identifier.case" value="MixedCase"/>
 
             <!--
@@ -32,12 +33,13 @@
             <property name="javax.jdo.option.ConnectionUserName" value="datanucleus"/>
             <property name="javax.jdo.option.ConnectionPassword" value="datanucleus"/>
 
+
             <!--
             fails, because DatabaseMetaData#getIndexInfo(null, null, "Person",...) does not returns the index
             if DN had called DatabaseMetaData#getIndexInfo(null, "people", "Person",...), though, then would have worked
             -->
 <!--
-            <property name="javax.jdo.option.ConnectionURL" value="jdbc:sqlserver://127.0.0.1:1433;instance=.;databaseName=nuccore1326_1"/>
+            <property name="javax.jdo.option.ConnectionURL" value="jdbc:sqlserver://127.0.0.1:1433;instance=.;databaseName=nuccore1326"/>
             <property name="javax.jdo.option.ConnectionDriverName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
             <property name="javax.jdo.option.ConnectionUserName" value="datanucleus"/>
             <property name="javax.jdo.option.ConnectionPassword" value="datanucleus"/>
