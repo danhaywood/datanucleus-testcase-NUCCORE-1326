@@ -1,9 +1,9 @@
 * text=auto
 
-*.java text
-*.xml text
-*.properties text
-*.md text
+*.java text eol=lf
+*.xml text eol=lf
+*.properties text eol=lf
+*.md text eol=lf
 
 *.class binary
 *.jar binary
